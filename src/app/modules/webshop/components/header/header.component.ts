@@ -9,15 +9,4 @@ import { RouterModule } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
-  items: { id: string; route: string }[] = [
-    {
-      id: 'products',
-      route: '',
-    },
-    {
-      id: 'chart',
-      route: 'chart',
-    },
-  ];
-}
+export class HeaderComponent {}
