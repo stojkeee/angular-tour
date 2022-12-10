@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { ChartComponent } from './pages/chart/chart.component';
+import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductsComponent } from './pages/products/products.component';
 
@@ -15,8 +15,8 @@ export const WEBSHOP_ROUTES: Route[] = [
         component: ProductsComponent,
       },
       {
-        path: 'chart',
-        component: ChartComponent,
+        path: 'cart',
+        component: CartComponent,
       },
       {
         path: 'login',

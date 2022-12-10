@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-chart',
+  selector: 'app-cart',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss'],
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.scss']
 })
-export class ChartComponent {}
+export class CartComponent {
+
+}
