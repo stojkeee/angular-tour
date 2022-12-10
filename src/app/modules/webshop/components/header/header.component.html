@@ -1,0 +1,21 @@
+<header class="w-full flex justify-center bg-white border-b border-black-2">
+  <div class="flex items-center justify-between container h-10 px-2">
+    <div class="flex font-bold">
+      <span class="material-symbols-outlined mr-2"> shopping_bag </span>
+      Webshop
+    </div>
+    <nav class="flex items-center">
+      <a
+        *ngFor="let item of items"
+        [routerLink]="item.route"
+        routerLinkActive="border-b-2 border-red"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex items-center capitalize mx-2 h-10">
+        {{ item.id }}
+      </a>
+      <button class="px-2 py-1 font-medium bg-yellow rounded border-2 ml-2">
+        Login
+      </button>
+    </nav>
+  </div>
+</header>
