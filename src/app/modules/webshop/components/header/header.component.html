@@ -13,7 +13,10 @@
         class="flex items-center capitalize mx-2 h-10">
         {{ item.id }}
       </a>
-      <button class="px-2 py-1 font-medium bg-yellow rounded border-2 ml-2">
+      <button
+        class="px-2 py-1 font-medium bg-yellow rounded border-2 ml-2"
+        type="button"
+        [routerLink]="'login'">
         Login
       </button>
     </nav>
