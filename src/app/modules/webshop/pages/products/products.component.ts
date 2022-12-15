@@ -19,17 +19,15 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
           <div class="flex items-center overflow-x-scoll cursor-pointer">
             <div
               class="px-2 py-1 rounded font-medium capitalize whitespace-pre ml-2"
-              [routerLink]="['']"
-              [routerLinkActive]="'active'"
-              [routerLinkActiveOptions]="{ exact: true }">
+              [routerLink]="['/shop/all']"
+              [routerLinkActive]="'active'">
               All
             </div>
             <div
               *ngFor="let category of categories$ | async"
               class="px-2 py-1 rounded font-medium capitalize whitespace-pre ml-2"
-              [routerLink]="['', category]"
-              [routerLinkActive]="'active'"
-              (click)="getData()">
+              [routerLink]="['/shop', category]"
+              [routerLinkActive]="'active'">
               {{ category }}
             </div>
           </div>
@@ -62,15 +60,16 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.productCategory = this.route.snapshot.params['category'];
+    this.route.params.subscribe(param => {
+      this.productCategory = param['category'];
+      this.getData();
+    });
 
     this.categories$ = this.productsService.getAllCategories();
-
-    this.getData();
   }
 
   getData() {
-    if (this.productCategory) {
+    if (this.productCategory !== 'all') {
       this.products$ = this.productsService.getProductsByCategory(
         this.productCategory
       );
