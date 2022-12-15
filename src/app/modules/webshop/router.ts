@@ -10,12 +10,9 @@ export const WEBSHOP_ROUTES: Route[] = [
     path: '',
     component: WebshopComponent,
     children: [
+      { path: '', redirectTo: 'shop/all', pathMatch: 'full' },
       {
-        path: '',
-        component: ProductsComponent,
-      },
-      {
-        path: ':category',
+        path: 'shop/:category',
         component: ProductsComponent,
       },
       {
