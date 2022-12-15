@@ -15,6 +15,10 @@ export const WEBSHOP_ROUTES: Route[] = [
         component: ProductsComponent,
       },
       {
+        path: ':category',
+        component: ProductsComponent,
+      },
+      {
         path: 'cart',
         component: CartComponent,
       },
