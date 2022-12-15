@@ -52,7 +52,13 @@ import { Product } from '../../pages/products/product.interface';
       </div>
     </div>
   `,
-  styles: [``],
+  styles: [
+    `
+      .image {
+        @apply border-b-8 border-r-8 border-l-2 border-t-2 border-black rounded-md;
+      }
+    `,
+  ],
 })
 export class ProductCardComponent {
   @Input() data!: Product;
