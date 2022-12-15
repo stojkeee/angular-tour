@@ -5,9 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-cart',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  template: `<p>cart works!</p> `,
+  styles: [``],
 })
-export class CartComponent {
-
-}
+export class CartComponent {}

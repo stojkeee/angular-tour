@@ -7,7 +7,10 @@ import { RouterModule } from '@angular/router';
   selector: 'app-webshop',
   standalone: true,
   imports: [CommonModule, HeaderComponent, RouterModule],
-  templateUrl: './webshop.component.html',
-  styleUrls: ['./webshop.component.scss'],
+  template: `
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  `,
+  styles: [``],
 })
 export class WebshopComponent {}

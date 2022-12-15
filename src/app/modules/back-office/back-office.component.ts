@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-back-office',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './back-office.component.html',
-  styleUrls: ['./back-office.component.scss'],
+  template: `<p>back-office works!</p>`,
+  styles: [``],
 })
 export class BackOfficeComponent {}
