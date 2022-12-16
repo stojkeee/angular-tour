@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { ProductCardComponent } from '../components/product-card.component';
 import { Observable } from 'rxjs';
-import { Product } from './product.interface';
-import { ProductsService } from '../../services/products.service';
+import { Product } from '../models/product.interface';
+import { ProductsService } from '../services/products.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
