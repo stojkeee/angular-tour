@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CartService } from '../services/cart.service';
+import { Observable } from 'rxjs';
+import { CartItem } from '../models/cart-item.interface';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +23,10 @@ import { RouterModule } from '@angular/router';
             class="btn ml-2"
             type="button"
             [routerLink]="'cart'">
-            Cart (0)
+            Cart
+            <span *ngIf="cartItems$ | async as cartItems">
+              ({{ cartItems.length }})
+            </span>
           </button>
           <button
             class="btn bg-yellow ml-2"
@@ -34,4 +40,7 @@ import { RouterModule } from '@angular/router';
   `,
   styles: [``],
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  cartItems$: Observable<CartItem[]> = this.cartService.cartItems$;
+  constructor(private cartService: CartService) {}
+}
