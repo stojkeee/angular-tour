@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Product } from '../models/product.interface';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -12,7 +13,7 @@ import { Product } from '../models/product.interface';
       <img
         [src]="data.image"
         [alt]="data.image"
-        class="h-48 aspect-square object-fit image" />
+        class="image" />
       <div
         class="flex flex-col w-full min-h-full justify-between mt-6 lg:mt-0 ml-0 lg:ml-6">
         <div>
@@ -45,7 +46,8 @@ import { Product } from '../models/product.interface';
           </button>
           <button
             class="btn bg-white w-full ml-1"
-            type="button">
+            type="button"
+            (click)="addToCart()">
             Add to cart
           </button>
         </div>
@@ -55,11 +57,17 @@ import { Product } from '../models/product.interface';
   styles: [
     `
       .image {
-        @apply border-b-8 border-r-8 border-l-2 border-t-2 border-black rounded-md;
+        @apply h-48 aspect-square object-contain bg-white p-5 border-b-8 border-r-8 border-l-2 border-t-2 border-black rounded-md;
       }
     `,
   ],
 })
 export class ProductCardComponent {
   @Input() data!: Product;
+
+  constructor(private cartService: CartService) {}
+
+  addToCart() {
+    this.cartService.addToCart({ product: this.data, quantity: 1 });
+  }
 }
