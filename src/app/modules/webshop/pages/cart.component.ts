@@ -1,19 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { CartItem } from '../models/cart-item.interface';
+import { CartItemComponent } from '../components/cart-item.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
   template: `
-    <ng-container *ngIf="cartItems$ | async as items">
-      {{ items | json }}
-    </ng-container>
+    <div
+      class="flex justify-center bg-blue h-[calc(100vh-49px)] overflow-y-auto">
+      <div class="container px-2 md:px-0">
+        <div class="mt-8">
+          <ng-container *ngIf="cartItems$ | async as items">
+            <app-cart-item
+              *ngFor="let item of items"
+              [data]="item">
+            </app-cart-item>
+          </ng-container>
+        </div>
+      </div>
+    </div>
   `,
   styles: [``],
+  imports: [CommonModule, CartItemComponent],
 })
 export class CartComponent implements OnInit {
   cartItems$!: Observable<CartItem[]>;
