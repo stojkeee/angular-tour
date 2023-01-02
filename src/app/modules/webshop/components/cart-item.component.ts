@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CartItem } from '../models/cart-item.interface';
 import { CartService } from '../services/cart.service';
@@ -9,16 +9,17 @@ import { CartService } from '../services/cart.service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    {{ data | json }}
     <div
-      class="bg-green border p-4 flex justify-between rounded-md mb-4 items-center">
+      class="bg-green border p-4 md:flex justify-between rounded-md mb-4 items-center">
       <div class="flex">
         <img
           [src]="data.product.image"
           [alt]="data.product.image"
           class="image" />
         <div class="flex flex-col justify-center ml-4">
-          <div class="font-bold text-xl my-1 cursor-pointer hover:underline">
+          <div
+            class="font-bold text-xl my-1 cursor-pointer hover:underline"
+            [routerLink]="['/product', data.product.id]">
             {{ data.product.title }}
           </div>
           <div class="font-bold text-blue my-1">
@@ -27,7 +28,7 @@ import { CartService } from '../services/cart.service';
         </div>
       </div>
       <div>
-        <div class="flex">
+        <div class="flex mt-4 md:mt-0">
           <button
             class="btn bg-yellow aspect-square ml-1"
             type="button"
@@ -62,13 +63,10 @@ export class CartItemComponent {
   constructor(private cartService: CartService) {}
 
   addToCart() {
-    this.cartService.addToCart({ product: this.data.product, quantity: 1 });
+    this.cartService.addToCart(this.data.product);
   }
 
   removeFromCart() {
-    this.cartService.removeFromCart({
-      product: this.data.product,
-      quantity: 1,
-    });
+    this.cartService.removeFromCart(this.data.product);
   }
 }
