@@ -22,10 +22,7 @@ import { Observable, map } from 'rxjs';
             class="btn ml-2"
             type="button"
             [routerLink]="'cart'">
-            Cart
-            <span *ngIf="cartItems$ | async as cartItems">
-              ({{ cartItems }})
-            </span>
+            Cart ({{ quantity$ | async }})
           </button>
           <button
             class="btn bg-yellow ml-2"
@@ -40,7 +37,7 @@ import { Observable, map } from 'rxjs';
   styles: [``],
 })
 export class HeaderComponent {
-  cartItems$: Observable<number> = this.cartService.cartItems$.pipe(
+  quantity$: Observable<number> = this.cartService.cartItems$.pipe(
     map(items => items.reduce((acc, item) => acc + item.quantity, 0))
   );
 
