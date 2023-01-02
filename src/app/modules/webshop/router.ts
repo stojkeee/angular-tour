@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 import { CartComponent } from './pages/cart.component';
 import { LoginComponent } from './pages/login.component';
+import { ProductComponent } from './pages/product.component';
 import { ProductsComponent } from './pages/products.component';
 
 import { WebshopComponent } from './webshop.component';
@@ -14,6 +15,10 @@ export const WEBSHOP_ROUTES: Route[] = [
       {
         path: 'shop/:category',
         component: ProductsComponent,
+      },
+      {
+        path: 'product/:id',
+        component: ProductComponent,
       },
       {
         path: 'cart',
