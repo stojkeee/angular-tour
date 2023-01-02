@@ -25,4 +25,8 @@ export class ProductsService {
       `${environment.baseUrl}/products/categories`
     );
   }
+
+  getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${environment.baseUrl}/products/${id}`);
+  }
 }
