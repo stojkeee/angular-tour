@@ -13,14 +13,16 @@ import { CartService } from '../services/cart.service';
       <img
         [src]="data.image"
         [alt]="data.image"
-        class="image" />
+        class="image"
+        [ngClass]="fullCard ? 'w-2/6' : 'h-48'" />
       <div
-        class="flex flex-col w-full min-h-full justify-between mt-6 lg:mt-0 ml-0 lg:ml-6">
+        class="flex flex-col w-full justify-between mt-6 lg:mt-0 ml-0 lg:ml-6"
+        [ngClass]="{ 'min-h-full': !fullCard }">
         <div>
           <div class="flex justify-between">
             <div
               class="text-black/50 cursor-pointer hover:underline"
-              [routerLink]="['./' + data.category]">
+              [routerLink]="['../' + data.category]">
               {{ data.category }}
             </div>
             <div class="flex items-center text-sm">
@@ -31,24 +33,33 @@ import { CartService } from '../services/cart.service';
               {{ data.rating.rate }}
             </div>
           </div>
-          <div class="font-bold text-xl my-1 cursor-pointer hover:underline">
+          <div
+            class="font-bold text-xl my-1 cursor-pointer hover:underline"
+            [routerLink]="['/product', data.id]">
             {{ data.title }}
           </div>
           <div class="font-bold text-blue my-1">
             {{ data.price | currency : 'USD' }}
           </div>
+          <div
+            *ngIf="fullCard"
+            class="my-4">
+            <div class="my-1 text-sm font-bold">Description</div>
+            <div>{{ data.description }}</div>
+          </div>
         </div>
         <div class="flex">
           <button
-            class="btn bg-yellow w-full mr-1"
-            type="button">
-            Buy now
-          </button>
-          <button
-            class="btn bg-white w-full ml-1"
+            class="btn bg-yellow mr-1"
+            [ngClass]="{ 'w-full': !fullCard }"
             type="button"
             (click)="addToCart()">
             Add to cart
+          </button>
+          <button
+            class="btn bg-white aspect-square ml-1"
+            type="button">
+            <span class="material-symbols-outlined"> favorite </span>
           </button>
         </div>
       </div>
@@ -57,17 +68,18 @@ import { CartService } from '../services/cart.service';
   styles: [
     `
       .image {
-        @apply h-48 aspect-square object-contain bg-white p-5 border-b-8 border-r-8 border-l-2 border-t-2 border-black rounded-md;
+        @apply aspect-square object-contain bg-white p-5 border-b-8 border-r-8 border-l-2 border-t-2 border-black rounded-md;
       }
     `,
   ],
 })
 export class ProductCardComponent {
   @Input() data!: Product;
+  @Input() fullCard = false;
 
   constructor(private cartService: CartService) {}
 
   addToCart() {
-    this.cartService.addToCart({ product: this.data, quantity: 1 });
+    this.cartService.addToCart(this.data);
   }
 }
