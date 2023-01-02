@@ -11,9 +11,8 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, ProductCardComponent, RouterModule],
   template: `
-    <div
-      class="flex justify-center bg-purple h-[calc(100vh-49px)] overflow-y-auto">
-      <div class="container px-2 md:px-0">
+    <div class="bg-purple h-[calc(100vh-49px)] overflow-y-auto">
+      <div class="container mx-auto px-2 md:px-0">
         <div
           class="md:flex justify-between items-center overflow-auto rounded-md bg-white border mt-8 p-3">
           <div class="flex items-center overflow-x-scoll cursor-pointer">
