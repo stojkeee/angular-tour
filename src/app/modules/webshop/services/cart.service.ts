@@ -15,7 +15,7 @@ export class CartService {
     return this._cartItems.getValue();
   }
 
-  private set setCartItems(item: CartItem[]) {
+  private set cartItems(item: CartItem[]) {
     this._cartItems.next(item);
   }
 
@@ -24,10 +24,10 @@ export class CartService {
       item => item.product.id === product.id
     );
     if (index < 0) {
-      this.setCartItems = [...this.cartItems, { product, quantity: 1 }];
+      this.cartItems = [...this.cartItems, { product, quantity: 1 }];
     } else {
       this.cartItems[index].quantity += 1;
-      this.setCartItems = [...this.cartItems];
+      this.cartItems = [...this.cartItems];
     }
   }
 
@@ -37,10 +37,10 @@ export class CartService {
     );
     if (this.cartItems[index].quantity <= 1) {
       this.cartItems.splice(index, 1);
-      this.setCartItems = [...this.cartItems];
+      this.cartItems = [...this.cartItems];
     } else {
       this.cartItems[index].quantity -= 1;
-      this.setCartItems = [...this.cartItems];
+      this.cartItems = [...this.cartItems];
     }
   }
 }
