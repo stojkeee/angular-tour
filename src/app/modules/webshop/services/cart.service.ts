@@ -7,7 +7,7 @@ import { Product } from '../models/product.interface';
   providedIn: 'root',
 })
 export class CartService {
-  private readonly _cartItems = new BehaviorSubject<CartItem[]>([]);
+  private _cartItems = new BehaviorSubject<CartItem[]>([]);
 
   readonly cartItems$: Observable<CartItem[]> = this._cartItems.asObservable();
 
